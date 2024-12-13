@@ -45,7 +45,7 @@
     <!-- * Sessão Explore nosso programa-->
     <section class="section__container explore__container">
       <div class="explore__header">
-        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2>  <
+        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2>  
         <div class="explore__nav">
           <span><i class="ri-arrow-left-line"></i></span>  
           <span><i class="ri-arrow-right-line"></i></span>  
