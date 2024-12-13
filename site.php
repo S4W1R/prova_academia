@@ -1,3 +1,32 @@
+<?php
+// cadastrar.php
+
+// Verifica se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Recebe o e-mail e a senha do formulário
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm-password'];
+
+    // Verifica se as senhas coincidem
+    if ($password !== $confirmPassword) {
+        echo "As senhas não coincidem. Tente novamente.";
+        exit;
+    }
+
+    // Salva o e-mail no arquivo emails.txt
+    $file = fopen('emails.txt', 'a'); // Abre o arquivo em modo de anexação
+    if ($file) {
+        fwrite($file, $email . PHP_EOL); // Escreve o e-mail no arquivo
+        fclose($file); // Fecha o arquivo
+        echo "Cadastro realizado com sucesso!<br>";
+        echo "<a href='listar.php'>Ver lista de e-mails cadastrados</a>";
+    } else {
+        echo "Erro ao salvar o e-mail. Tente novamente mais tarde.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
   <head>
@@ -6,54 +35,52 @@
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
       rel="stylesheet"
-    />  
-    <link rel="stylesheet" href="style2.css" />  
-    <title>Maestria em Design Web | Fitclub</title>
+    />  <!-- * Importação de ícones do remixicon, uma biblioteca de ícones de fácil uso -->
+    <link rel="stylesheet" href="style2.css" />  <!-- * Importação do arquivo de estilo CSS (style2.css) -->
+    <title>Maestria em Design Web | Fitclub</title>  <!-- * Título da página que aparecerá na aba do navegador -->
   </head>
   <body>
-    <nav> 
+    <nav>
       <div class="nav__logo">
-        <a href="#"><img src="images/logo (1).png" alt="logo" /></a>  
+        <a href="#"><img src="images/logo (1).png" alt="logo" /></a>  <!-- * Logo do site com link -->
       </div>
-       <!-- Menu de navegação -->
       <ul class="nav__links">
-        <li class="link"><a href="#">Início</a></li>  
-        <li class="link"><a href="#">Programa</a></li>
-        <li class="link"><a href="#">Serviço</a></li> 
-        <li class="link"><a href="#">Sobre</a></li>  
-        <li class="link"><a href="#">Comunidade</a></li>  
+        <li class="link"><a href="#">Início</a></li>  <!-- * Link para a página inicial -->
+        <li class="link"><a href="#">Programa</a></li>  <!-- * Link para o programa do site -->
+        <li class="link"><a href="#">Serviço</a></li>  <!-- * Link para a seção de serviços -->
+        <li class="link"><a href="#">Sobre</a></li>  <!-- * Link para informações sobre a empresa -->
+        <li class="link"><a href="#">Comunidade</a></li>  <!-- * Link para a seção da comunidade -->
       </ul>
-      <button class="btn">Junte-se Agora</button>  
+      <button class="btn">Junte-se Agora</button>  <!-- * Botão de ação para adesão ao site -->
     </nav>
-<!-- * Sessão O melhor fitnes da cidade-->
+
     <header class="section__container header__container">
       <div class="header__content">
-        <span class="bg__blur"></span>  
-        <span class="bg__blur header__blur"></span>  
-        <h4>O MELHOR FITNESS DA CIDADE</h4>  
-        <h1><span>MODELE</span> SEU CORPO</h1>  
-
+        <span class="bg__blur"></span>  <!-- * Aplicação de efeito de desfoque no fundo -->
+        <span class="bg__blur header__blur"></span>  <!-- * Segundo efeito de desfoque no fundo -->
+        <h4>O MELHOR FITNESS DA CIDADE</h4>  <!-- * Título de seção com uma mensagem atrativa -->
+        <h1><span>MODELE</span> SEU CORPO</h1>  <!-- * Título principal da seção -->
+        <p>
           Liberte seu potencial e embarque em uma jornada rumo a um você mais forte...
-        </p>  
-        <button class="btn">Comece Agora</button>  
+        </p>  <!-- * Parágrafo que descreve os benefícios do programa -->
+        <button class="btn">Comece Agora</button>  <!-- * Botão de ação para iniciar o programa -->
       </div>
       <div class="header__image">
-        <img src="images/header.png" alt="header" />  
+        <img src="images/header.png" alt="header" />  <!-- * Imagem de destaque na página -->
       </div>
     </header>
 
-    <!-- * Sessão Explore nosso programa-->
     <section class="section__container explore__container">
       <div class="explore__header">
-        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2>  <
+        <h2 class="section__header">EXPLORE NOSSO PROGRAMA</h2>  <!-- * Título da seção para explorar o programa -->
         <div class="explore__nav">
-          <span><i class="ri-arrow-left-line"></i></span>  
-          <span><i class="ri-arrow-right-line"></i></span>  
+          <span><i class="ri-arrow-left-line"></i></span>  <!-- * Ícone de seta para a esquerda -->
+          <span><i class="ri-arrow-right-line"></i></span>  <!-- * Ícone de seta para a direita -->
         </div>
       </div>
       <div class="explore__grid">
         <div class="explore__card">
-          <span><i class="ri-boxing-fill"></i></span>  
+          <span><i class="ri-boxing-fill"></i></span>  <!-- * Ícone de boxe -->
           <h4>Força</h4>
           <p>
             Abrace a essência da força enquanto exploramos suas várias dimensões...
@@ -110,58 +137,77 @@
         <!-- * Repetição de cards de planos de preços com detalhes e botão de adesão -->
       </div>
     </section>
+        
+    
+    <!-- Seção de Gerenciamento de Conta -->
+    <section class="section__container account-management__container">
+      <div class="account-management__content">
+        <h2 class="section__header">Gerenciamento de Conta</h2>
 
-    <section class="review">
-      <div class="section__container review__container">
-        <span><i class="ri-double-quotes-r"></i></span>  <!-- * Ícone de aspas para o feedback -->
-        <div class="review__content">
-          <h4>AVALIAÇÃO DOS MEMBROS</h4>  <!-- * Título da seção de avaliações -->
-          <p>
-            O que realmente diferencia esta academia é sua equipe especializada...
-          </p>
-          <div class="review__rating">
-            <!-- * Ícones de estrelas para avaliação -->
+      <!-- Descrição breve sobre as opções disponíveis -->
+      <p class="section__subheader">Aqui você pode editar suas informações, listar todas as contas cadastradas ou excluir a sua conta.</p>
+      
+      <!-- Div para Centralizar Botões -->
+      <div class="account-management__buttons">
+        <!-- Botão de Editar Conta -->
+        <section class="section__container">
+          <div class="content">
+            <!-- Botão para acessar editar.php -->
+            <a href="editar.php" class="btn">Editar Conta</a>
           </div>
-          <div class="review__footer">
-            <div class="review__member">
-              <img src="images/Captura de tela 2024-12-12 095641.png" alt="membro" />  <!-- * Imagem do membro que fez a avaliação -->
-              <div class="review__member__details">
-                <h4>Luan Borges</h4>
-                <p>Desenvolvedor de Software</p>
-              </div>
-            </div>
-            <div class="review__member">
-              <img src="images/Captura de tela 2024-12-12 095559.png" alt="membro" />  <!-- * Imagem do membro que fez a avaliação -->
-              <div class="review__member__details">
-                <h4>Samir </h4>
-                <p>Desenvolvedor de Software</p>
-              </div>
-            </div>
-            <div class="review__nav">
-              <span><i class="ri-arrow-left-line"></i></span>  <!-- * Navegação entre avaliações -->
-              <span><i class="ri-arrow-right-line"></i></span>
-            </div>
+        </section>
+        <!-- Botão de Listar Contas -->
+        <section class="section__container">
+          <div class="content">
+            <!-- Botão para acessar listar.php -->
+            <a href="listar.php" class="btn">Ver Lista</a>
           </div>
-        </div>
+        </section>
+        <!-- Botão de Deletar Conta -->
+        <section class="section__container">
+          <div class="content">
+            <!-- Botão para acessar deletar.php -->
+            <a href="deletar.php" class="btn">Deletar Conta</a>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
+  </section>
+  
 
-    <footer class="section__container footer__container">
-      <span class="bg__blur"></span>  <!-- * Efeito de desfoque aplicado ao fundo do rodapé -->
-      <div class="footer__col">
-        <div class="footer__logo"><img src="images/logo (1).png" alt="logo" /></div>  <!-- * Logo do rodapé -->
-        <p>
-          Dê o primeiro passo rumo a um você mais saudável...
-        </p>
-        <div class="footer__socials">
-          <a href="#"><i class="ri-facebook-fill"></i></a>
-          <!-- * Links para redes sociais -->
-        </div>
-      </div>
-      <!-- * Outras seções do rodapé com links de contato e informações sobre a empresa -->
-    </footer>
-    <div class="footer__bar">
-      Copyright © 2023 Fitclub. Todos os direitos reservados.
-    </div>  <!-- * Copyright do site -->
   </body>
-</html>
+  </html>
+  <section class="review">
+    <div class="section__container review__container">
+      <span><i class="ri-double-quotes-r"></i></span>  <!-- * Ícone de aspas para o feedback -->
+      <div class="review__content">
+        <h4>AVALIAÇÃO DOS MEMBROS</h4>  <!-- * Título da seção de avaliações -->
+        <p>
+          O que realmente diferencia esta academia é sua equipe especializada...
+        </p>
+        <div class="review__rating">
+          <!-- * Ícones de estrelas para avaliação -->
+        </div>
+        <div class="review__footer">
+          <div class="review__member">
+            <img src="images/Captura de tela 2024-12-12 095641.png" alt="membro" />  <!-- * Imagem do membro que fez a avaliação -->
+            <div class="review__member__details">
+              <h4>Luan Borges</h4>
+              <p>Desenvolvedor de Software</p>
+            </div>
+          </div>
+          <div class="review__member">
+            <img src="images/Captura de tela 2024-12-12 095559.png" alt="membro" />  <!-- * Imagem do membro que fez a avaliação -->
+            <div class="review__member__details">
+              <h4>Samir </h4>
+              <p>Desenvolvedor de Software</p>
+            </div>
+          </div>
+          <div class="review__nav">
+            <span><i class="ri-arrow-left-line"></i></span>  <!-- * Navegação entre avaliações -->
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
