@@ -64,7 +64,7 @@ $conn->close();  // Fechando a conexão com o banco de dados
     <!-- Seção principal de cadastro -->
     <section class="section__container signup__container">
       <div class="signup__content">
-        <h2 class="section__header">Criar Conta</h2>
+        <h2 class="section__header">Login</h2>
         <!-- Formulário de cadastro -->
         <form action="" method="POST" class="signup__form">
           
@@ -105,12 +105,12 @@ $conn->close();  // Fechando a conexão com o banco de dados
           </div>
 
           <!-- Botão de envio do formulário -->
-          <button type="submit" class="btn"><a href="site.php">Criar Conta</a></button>
+          <button type="submit" class="btn"><a href="site.php">Entrar</a></button>
         </form>
 
         <!-- Link para fazer login caso o usuário já tenha uma conta -->
         <p class="signup__footer">
-          Já tem uma conta? <a href="login.php">Faça login</a>
+          Não tem uma conta? <a href="cadastro.php">Cria conta</a>
         </p>
       </div>
     </section>
